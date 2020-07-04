@@ -37,7 +37,7 @@ const getVideoSrc = async () => {
   }
 }
 
-const VideoLink = async () => {
+const videoLink = async () => {
   for (let index = 0; index < list.length; index++) {
     const videoData = list[index];
 
@@ -82,7 +82,7 @@ const VideoLink = async () => {
   }
 }
 
-const ShowPage = () => {
+const showPage = () => {
   let DOM = `<html><head><title>구아캠 영상 리스트</title></head><body><ul>`
   for (const element of Src) {
     if (element.Sub) {
@@ -107,8 +107,8 @@ const ShowPage = () => {
 var start = async () => {
   try {
     await getVideoSrc();
-    await VideoLink();
-    ShowPage();
+    await videoLink();
+    showPage();
     console.log('Done')
   } catch (error) {
     console.log(error)
