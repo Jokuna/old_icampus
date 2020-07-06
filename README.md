@@ -33,22 +33,21 @@
 1. icampus.ac.kr 접속 후 로그인을 합니다.
 
 2. 각 과목 강의 목록 페이지로 이동합니다.
-    - Ex) http://icampus.ac.kr/front/study/MainAction.do?method=list
 
 3. f12 눌러서 개발자모드를 킨 후 `Console` 탭에 들어갑니다.
 
 4. 다음을 복사해서 붙여넣고 Enter 치기
 ```js
 var jq = document.createElement('script');
-jq.src = "https://cdn.jsdelivr.net/gh/Jokuna/old_icampus@master/script.js"; 
+jq.src = "https://cdn.jsdelivr.net/gh/Jokuna/old_icampus/script.js"; 
 document.getElementsByTagName('head')[0].appendChild(jq);
 ```
 
 5. 마지막으로 `start();` 치고 Enter 쳐서 실행하기
-```js
-start();
-```
+![example](https://user-images.githubusercontent.com/39121933/86587819-56909580-bfc5-11ea-8639-e71f550442bf.png)
 
-6. 몇 초 대기 후 해당 과목 강의 목록 페이지가 뜹니다.
+6. 몇 초 후 해당 과목의 강의 목록 페이지가 뜹니다.
+![example2](https://user-images.githubusercontent.com/39121933/86588028-d454a100-bfc5-11ea-9e6b-be32ef984755.png)
 
-7. 다운받고 싶은 강의 클릭 후 우클릭으로하여 저장합니다.
+7. 다운받고 싶은 강의를 클릭하여 영상을 연 후, 우클릭해서 저장합니다.
+![example3](https://user-images.githubusercontent.com/39121933/86588087-f5b58d00-bfc5-11ea-93c7-076ed9354bde.png)
