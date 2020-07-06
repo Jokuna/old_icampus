@@ -9,9 +9,8 @@
 * [Note](#note)
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
-* [License](#license)
 
-## Note
+## 주의사항
 
 강의 저작물은 학교의 저작물로서 저작권으로 보호되므로 무단 복제 또는 배포, 전송하는 행위는 저작권 침해 행위에 해당하여 민 * 형사상 책임을 질 수 있습니다.
 
@@ -21,7 +20,7 @@
 
 ## About The Project
 
-신규 아이캠퍼스가 정식 서비스를 시행함에 따라 이전 [`구 아이캠퍼스 서비스`](`http://www.icampus.ac.kr`)가 2020년 8월 31일부로 정식 서비스를 종료하게 되었습니다.
+신규 아이캠퍼스가 정식 서비스를 시행함에 따라 이전 [`구 아이캠퍼스 서비스`](http://www.icampus.ac.kr)가 2020년 8월 31일부로 정식 서비스를 종료하게 되었습니다.
 
 종료일자 이후에는 구 아이캠퍼스 접속이 불가능하여 보관이 필요한 데이터들은 미리 다운로드를 해야 합니다.
 
@@ -51,3 +50,7 @@ document.getElementsByTagName('head')[0].appendChild(jq);
 
 7. 다운받고 싶은 강의를 클릭하여 영상을 연 후, 우클릭해서 저장합니다.
 ![example3](https://user-images.githubusercontent.com/39121933/86588087-f5b58d00-bfc5-11ea-93c7-076ed9354bde.png)
+
+## 참고사항
+
+- vod1-m.icampus.ac.kr에 영상이 저장되어 있는 경우 서버가 터져있어서 다운로드를 할 수 없습니다.
