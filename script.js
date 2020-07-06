@@ -5,7 +5,6 @@ jq.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 
 let list = []
-let Src = []
 
 const getVideoSrc = async () => {
   const VideoList = document.getElementsByTagName('a')
