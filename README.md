@@ -38,7 +38,7 @@
 4. 다음을 복사해서 붙여넣고 Enter를 칩니다.
 ```js
 var jq = document.createElement('script');
-jq.src = "https://cdn.jsdelivr.net/gh/Jokuna/old_icampus/script.js"; 
+jq.src = "https://cdn.jsdelivr.net/gh/Jokuna/old_icampus@master/script.js"; 
 document.getElementsByTagName('head')[0].appendChild(jq);
 ```
 
