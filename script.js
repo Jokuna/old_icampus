@@ -38,9 +38,7 @@ const getVideoSrc = async () => {
 }
 
 const videoLink = async () => {
-  for (let index = 0; index < list.length; index++) {
-    const videoData = list[index];
-
+  await Promise.all(list.map(async (videoData, index) => {
     if (videoData.down) {
       const url = '/player.do?method=index&'
       const dt = new Date();
@@ -61,40 +59,25 @@ const videoLink = async () => {
         Main = PlayerJsp.data.split('source.push(\"')[1].split('");')[0] + `?userKey=${userKey}`;
         Sub = false
       }
-
-      Src.push({
-        Main, Sub, Name: videoData.name
-      })
-
-      if (index == parseInt(list.length / 3)) {
-        console.log('30%')
-      }
-      else if (index == parseInt(list.length / 2)) {
-        console.log('50%')
-      }
-      else if (index == parseInt(list.length * 2 / 3)) {
-        console.log('70%')
-      }
-      else if (index == parseInt(list.length * 3 / 4)) {
-        console.log('잠시만 기다려 주세요...')
-      }
+      list[index].Main = Main
+      list[index].Sub = Sub
     }
-  }
+  }))
 }
 
 const showPage = () => {
   let DOM = `<html><head><title>구아캠 영상 리스트</title></head><body><ul>`
-  for (const element of Src) {
-    if (element.Sub) {
+  for (const element of list) {
+    if (!!element.Sub) {
       DOM += `
       <li style="margin-bottom: 5px;">
-      ${element.Name}:&nbsp;<a href="${element.Main}" onclick="window.open(this.href, '_blank'); return false;">Screen</a>&nbsp;<a href="${element.Sub}" onclick="window.open(this.href, '_blank'); return false;">Cam</a>
+      ${element.name}:&nbsp;<a href="${element.Main}" onclick="window.open(this.href, '_blank'); return false;">Screen</a>&nbsp;<a href="${element.Sub}" onclick="window.open(this.href, '_blank'); return false;">Cam</a>
       </li>`
     }
     else {
       DOM += `
       <li style="margin-bottom: 5px;">
-      ${element.Name}:&nbsp;<a href="${element.Main}" onclick="window.open(this.href, '_blank'); return false;">Screen</a>
+      ${element.name}:&nbsp;<a href="${element.Main}" onclick="window.open(this.href, '_blank'); return false;">Screen</a>
       </li>`
     }
 
