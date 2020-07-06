@@ -29,8 +29,7 @@ const getVideoSrc = async () => {
           cntsIslive: data[11],
           stdyEndYn: data[12],
           fpmnginfo: data[13],
-          name: VideoList[e].innerText,
-          down: true
+          name: VideoList[e].innerText
         })
       }
     }
@@ -39,34 +38,33 @@ const getVideoSrc = async () => {
 
 const videoLink = async () => {
   await Promise.all(list.map(async (videoData, index) => {
-    if (videoData.down) {
-      const url = '/player.do?method=index&'
-      const dt = new Date();
-      const _TOK = dt.getTime();
-      const pars = `GRNOID=${escape(document.frmCon.hLmsSbjtGrnoId.value)}&CONTENTID=${escape(videoData.cntsId)}&PLDCNO=${escape(videoData.lectPldcNo)}&REGPNNO=${escape(document.frmCon.userNo.value)}&ISPROP=N&WEEK=${escape(videoData.hgrkLectNo)}&WEEKNO=${escape(videoData.lectNo)}&_TOK=${escape(_TOK)}`
+    const url = '/player.do?method=index&'
+    const _TOK = new Date().getTime();
+    const pars = `GRNOID=${escape(document.frmCon.hLmsSbjtGrnoId.value)}&CONTENTID=${escape(videoData.cntsId)}&PLDCNO=${escape(videoData.lectPldcNo)}&REGPNNO=${escape(document.frmCon.userNo.value)}&ISPROP=N&WEEK=${escape(videoData.hgrkLectNo)}&WEEKNO=${escape(videoData.lectNo)}&_TOK=${escape(_TOK)}`
 
-      const playerDo = await axios.get(url + pars);
-      const PlayerJspLink = playerDo.data.split('src="')[1].split('"')[0];
-      const userKey = PlayerJspLink.split("userKey=")[1].split("&")[0];
-    
-      const PlayerJsp = await axios.get(PlayerJspLink);
-      let Main = ''
-      let Sub = ''
-      try {
-        Main = PlayerJsp.data.split('source.push(\"')[1].replace('");', '') + `?userKey=${userKey}`;
-        Sub = PlayerJsp.data.split('source.push(\"')[2].split('");')[0] + `?userKey=${userKey}`; 
-      } catch (error) {
-        Main = PlayerJsp.data.split('source.push(\"')[1].split('");')[0] + `?userKey=${userKey}`;
-        Sub = false
-      }
-      list[index].Main = Main
-      list[index].Sub = Sub
+    const playerDo = await axios.get(url + pars);
+    const PlayerJspLink = playerDo.data.split('src="')[1].split('"')[0];
+    const userKey = PlayerJspLink.split("userKey=")[1].split("&")[0];
+  
+    const PlayerJsp = await axios.get(PlayerJspLink);
+    let Main = ''
+    let Sub = ''
+    try {
+      Main = PlayerJsp.data.split('source.push(\"')[1].replace('");', '') + `?userKey=${userKey}`;
+      Sub = PlayerJsp.data.split('source.push(\"')[2].split('");')[0] + `?userKey=${userKey}`; 
     }
+    catch (error) {
+      Main = PlayerJsp.data.split('source.push(\"')[1].split('");')[0] + `?userKey=${userKey}`;
+      Sub = false
+    }
+    list[index].Main = Main
+    list[index].Sub = Sub
   }))
 }
 
 const showPage = () => {
-  let DOM = `<html><head><title>구아캠 영상 리스트</title></head><body><ul>`
+  const title = document.getElementsByTagName('h3')[0].innerText.split(' ')[0]
+  let DOM = `<html><head><title>${!!title ? title : '구아캠'} 영상 리스트</title></head><body><ul>`
   for (const element of list) {
     if (!!element.Sub) {
       DOM += `
@@ -93,7 +91,8 @@ var start = async () => {
     await videoLink();
     showPage();
     console.log('Done')
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error)
     alert("Error")
   }
